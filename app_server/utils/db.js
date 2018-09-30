@@ -5,10 +5,14 @@ const dbURI = `mongodb://${config.dbUser}:${config.dbPass}@${config.dbHost}:${
   config.dbPort
 }/${config.dbName}`;
 
-mongoose.connect(
-  dbURI,
-  { useNewUrlParser: true },
-);
+let db = {};
+db.startConnection = () =>
+  mongoose.connect(
+    dbURI,
+    { useNewUrlParser: true },
+  );
+
+export default db;
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${dbURI}`);

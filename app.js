@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 
 // connect to the database
 import db from './app_server/utils/db';
+db.startConnection();
 
 var app = express();
 
