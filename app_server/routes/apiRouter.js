@@ -10,5 +10,7 @@ import workoutController from '../controllers/workoutController';
  */
 router.route('/workouts').get(workoutController.list);
 
+router.route('/workouts/:id').get(workoutController.detail);
+
 // export the router
 export default router;
