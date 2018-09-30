@@ -11,13 +11,10 @@ let workoutController = {};
 
 // show list of all workout programs
 workoutController.list = (req, res) => {
-  WorkoutProgram.find().then(workouts =>
-    res.render('workoutList', {
-      siteTitle,
-      pageTitle: 'List of workouts',
-      workouts,
-    }),
-  );
+  WorkoutProgram.find().then(workouts => {
+    res.status(200);
+    res.json(workouts);
+  });
 };
 
 // show detail of one workout program
