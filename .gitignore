@@ -66,3 +66,6 @@ package-lock.json
 
 # TODO File
 TODO.txt
+
+#.env File
+.env
