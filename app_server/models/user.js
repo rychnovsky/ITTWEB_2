@@ -55,4 +55,6 @@ userSchema.methods.generateJwt = function(){
     }, process.env.JWT_SECRET);
 }
 
-export default mongoose.model('user', userSchema);
+let userProgram = mongoose.model('userProgram', userSchema);
+
+export default mongoose.model('userProgram', userProgram);

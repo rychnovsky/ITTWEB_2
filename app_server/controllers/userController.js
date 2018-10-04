@@ -1,4 +1,4 @@
-import user from '../models/user';
+import userProgram from '../models/user';
 
 let userController = {};
 
