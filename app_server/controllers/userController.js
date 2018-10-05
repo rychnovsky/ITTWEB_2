@@ -11,7 +11,11 @@ userController.register = (req,res) => {
                 .json({"message" : "All fields required"});
             return;
     }
-    //TODO check if email is already taken
+    if(userProgram.find({email : req.body.email})){
+        res
+            .status(400)
+            .json({"message" : "Email already in use"});
+    }
     const user = new userProgram();
     user.firstName = req.body.firstName;
     user.surNAme = req.body.surName;
@@ -42,6 +46,18 @@ userController.login = (req,res) => {
     const email = req.body.email;
     
     //TODO find user by email, see if password matches
+    if(!userProgram.find({email : req.body.email})){
+        res
+            .status(400)
+            .json({"message" : "Email not registered"});
+    }
+    var currentUser = userProgram.find({email : req.body.email});
+    if(currentUser.validatePassword(req.body.password)){
+        res
+            .status(200)
+            .json({"token" : currentUser.generateJwt, "email" : currentUser.email,
+            "firstName" : currentUser.firstName, "lastName" : currentUser.lastName});
+    }
 }
 
 export default userController;

@@ -15,5 +15,7 @@ router.route('/workouts/:id').get(workoutController.detail);
 
 //TODO make sure this is done right
 router.post('/register', userController.register);
+
+router.post('/login', userController.login);
 // export the router
 export default router;
