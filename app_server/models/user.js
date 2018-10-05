@@ -9,7 +9,7 @@ const userSchema =  new Schema({
         type: String,
         required: true
     },
-    lastName: {
+    surName: {
         type: String,
         required: true
     },
@@ -47,7 +47,7 @@ userSchema.methods.generateJwt = function(){
     return jwt.sign({
         email: this.email,
         firstName: this.firstName,
-        surName: this.lastName,
+        surName: this.surName,
         exp: parseInt(expiration.getTime() / 1000),
     }, process.env.JWT_SECRET);
 }

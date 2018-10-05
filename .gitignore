@@ -55,9 +55,6 @@ package-lock.json
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-
 # next.js build output
 .next
 
@@ -66,6 +63,3 @@ package-lock.json
 
 # TODO File
 TODO.txt
-
-#.env File
-.env

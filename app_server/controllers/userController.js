@@ -3,7 +3,7 @@ import userProgram from '../models/user';
 let userController = {};
 
 userController.register = (req,res) => {
-    if(!req.body.firstName || !req.body.lastName ||
+    if(!req.body.firstName || !req.body.surName ||
         !req.body.email || 
         !req.body.password){
             res
@@ -14,7 +14,7 @@ userController.register = (req,res) => {
     //TODO check if email is already taken
     const user = new userProgram();
     user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
+    user.surNAme = req.body.surName;
     user.email = req.body.email;
     user.setPassword(req.body.password);
     user.save(function(error){
