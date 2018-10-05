@@ -63,3 +63,9 @@ package-lock.json
 
 # System Files
 .DS_Store
+
+# TODO File
+TODO.txt
+
+#.env File
+.env
