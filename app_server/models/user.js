@@ -1,5 +1,6 @@
 import mongoose, { Mongoose } from 'mongoose'
 import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
+const crypto = require('crypto');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 
@@ -41,7 +42,7 @@ userSchema.methods.validatePassword = function(password){
 userSchema.methods.generateJwt = function(){
     var expiration = new Date();
     //TODO change expiration of JWT ?
-    expiration.setDate(expiry.getDate());
+    expiration.setDate(expiration.getDate());
 
     //getTime() / 1000, time is in milliseconds
     return jwt.sign({
