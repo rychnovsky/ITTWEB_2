@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+import mongoose, { Mongoose } from 'mongoose'
+import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 
@@ -9,10 +10,6 @@ const userSchema =  new Schema({
         required: true
     },
     lastName: {
-        type: String,
-        required: true
-    },
-    userName: {
         type: String,
         required: true
     },
@@ -48,13 +45,16 @@ userSchema.methods.generateJwt = function(){
 
     //getTime() / 1000, time is in milliseconds
     return jwt.sign({
-        _id: this._id,
         email: this.email,
-        name: this.name,
+        firstName: this.firstName,
+        surName: this.lastName,
         exp: parseInt(expiration.getTime() / 1000),
     }, process.env.JWT_SECRET);
 }
 
+userSchema.plugin(MongooseAutoIncrementID.plugin, {
+    modelName: 'userProgram',
+})
 let userProgram = mongoose.model('userProgram', userSchema);
 
-export default mongoose.model('userProgram', userProgram);
+export default userProgram;

@@ -3,6 +3,7 @@ var router = express.Router();
 
 // import controlers
 import workoutController from '../controllers/workoutController';
+import userController from '../controllers/userController';
 
 /**
  * Router
@@ -12,5 +13,7 @@ router.route('/workouts').get(workoutController.list);
 
 router.route('/workouts/:id').get(workoutController.detail);
 
+//TODO make sure this is done right
+router.post('/register', userController.register);
 // export the router
 export default router;

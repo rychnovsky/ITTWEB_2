@@ -12,8 +12,8 @@ points with \* should be protected
 
 - /api/
 
-  - POST /login - will return { "token": JWT, "name": name, "surname": surname }
-  - POST /register - will return { "token": JWT, "name": name, "surname": surname }
+  - POST /login - will return { "token": JWT, "email : email, "name": name, "surname": surname }
+  - POST /register - will return { "token": JWT, "email" : email, "name": name, "surname": surname }
 
   - GET /workouts - will return list of workouts { "workouts": workout[] }
   - - POST /workouts - create a new workout, return { "message": "Workout was saved" }
