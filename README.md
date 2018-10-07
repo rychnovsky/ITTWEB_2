@@ -5,6 +5,8 @@
 - /api/
   - GET /workouts/ - get all workouts
   - GET /workouts/{id}
+  - POST /login - will return { "token": JWT, "email : email, "firstName": firstName, "surname": surname }
+  - POST /register - will return { "token": JWT, "email" : email, "firstName": firstName, "surname": surname }
 
 ## endpoints to be implemented:
 
@@ -12,8 +14,7 @@ points with \* should be protected
 
 - /api/
 
-  - POST /login - will return { "token": JWT, "email : email, "firstName": firstName, "surname": surname }
-  - POST /register - will return { "token": JWT, "email" : email, "firstName": firstName, "surname": surname }
+
 
   - GET /workouts - will return list of workouts { "workouts": workout[] }
   - - POST /workouts - create a new workout, return { "message": "Workout was saved" }
