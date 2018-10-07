@@ -41,7 +41,7 @@ userController.register = (req,res) => {
                     jwtToken = user.generateJwt();
                     res
                         .status(200)
-                        .json({"token" : jwtToken});
+                        .json({"token" : jwtToken, "email" : user.email, "firstName" : user.firstName, "surName" : user.surName});
                     return false;
                 }
             })
