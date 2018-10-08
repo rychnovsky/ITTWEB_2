@@ -42,7 +42,7 @@ userSchema.methods.validatePassword = function(password){
 userSchema.methods.generateJwt = function(){
     var expiration = new Date();
     //TODO change expiration of JWT ?
-    expiration.setDate(expiration.getDate());
+    expiration.setDate(expiration.getDate() + 2);
 
     //getTime() / 1000, time is in milliseconds
     return jwt.sign({
