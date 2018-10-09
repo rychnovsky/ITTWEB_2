@@ -1,6 +1,7 @@
 /**
  * Workout controller
  */
+import mongoose from 'mongoose';
 import WorkoutProgram from '../models/workoutProgram';
 import ExcerciseSchema from '../models/excercise';
 
@@ -47,9 +48,13 @@ workoutController.addNewWorkout = (req, res) => {
   newWorkout.save();
   res
     .status(200)
-    .json({"message" : "Workout was saved", "workout" : newWorkout});
+    .json()
   return;
+    //.json({"message" : "Workout was saved", "workout" : newWorkout});
+  
 }
+
+let ExcerciseProgram = mongoose.model('ExcerciseProgram', ExcerciseSchema);
 
 workoutController.addNewExercise = (req, res) => {
   if(!req.body.name || !req.body.description || 
@@ -60,7 +65,7 @@ workoutController.addNewExercise = (req, res) => {
       return;
     }
 
-  const newExercise = new ExcerciseSchema();
+  const newExercise = new ExcerciseProgram();
   newExercise.name = req.body.name,
   newExercise.description = req.body.description,
   newExercise.set = req.body.num_per_set,
@@ -69,10 +74,13 @@ workoutController.addNewExercise = (req, res) => {
   WorkoutProgram.findByIdAndUpdate(req.params.id, {
     $addToSet: { excercises: newExercise },
   }).then(() => {
+    console.log('here');
     res
       .status(200)
-      .json({"message" : "Excercise was saved", "exercise" : newExercise});
-      return;
+      .json()
+    return;
+      //.json({"message" : "Excercise was saved", "exercise" : newExercise});
+      
   });
   return;
 }
