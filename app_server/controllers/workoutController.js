@@ -42,7 +42,7 @@ workoutController.addNewWorkout = (req, res) => {
       return;
   }
   const newWorkout = new WorkoutProgram({
-    name : req.body.workout_name
+    name : req.body.name
   });
   newWorkout.save();
   res
