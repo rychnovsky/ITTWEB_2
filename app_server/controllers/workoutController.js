@@ -48,7 +48,7 @@ workoutController.addNewWorkout = (req, res) => {
   newWorkout.save();
   res
     .status(200)
-    .json()
+    .json(newWorkout);
   return;
     //.json({"message" : "Workout was saved", "workout" : newWorkout});
   
@@ -74,10 +74,9 @@ workoutController.addNewExercise = (req, res) => {
   WorkoutProgram.findByIdAndUpdate(req.params.id, {
     $addToSet: { excercises: newExercise },
   }).then(() => {
-    console.log('here');
     res
       .status(200)
-      .json()
+      .json(newExercise);
     return;
       //.json({"message" : "Excercise was saved", "exercise" : newExercise});
       
