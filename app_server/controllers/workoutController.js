@@ -66,10 +66,10 @@ workoutController.addNewExercise = (req, res) => {
     }
 
   const newExercise = new ExcerciseProgram();
-  newExercise.name = req.body.name,
-  newExercise.description = req.body.description,
-  newExercise.set = req.body.num_per_set,
-  newExercise.duration = req.body.duration
+  newExercise.name = req.body.name;
+  newExercise.description = req.body.description;
+  newExercise.set = req.body.set;
+  newExercise.duration = req.body.duration;
   
   WorkoutProgram.findByIdAndUpdate(req.params.id, {
     $addToSet: { excercises: newExercise },
