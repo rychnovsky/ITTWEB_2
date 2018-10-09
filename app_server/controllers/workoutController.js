@@ -35,10 +35,10 @@ workoutController.detail = (req, res) => {
 
 //Add new workout program
 workoutController.addNewWorkout = (req, res) => {
-  if(!req.body.workout_name || req.body.workout_name === ''){
+  if(!req.body.name || req.body.name === ''){
     res
       .status(400)
-      .json({"message" : "workout_name cannot be empty"});
+      .json({"message" : "name cannot be empty"});
       return;
   }
   const newWorkout = new WorkoutProgram({
