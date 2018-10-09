@@ -45,10 +45,13 @@ workoutController.addNewWorkout = (req, res) => {
   const newWorkout = new WorkoutProgram({
     name : req.body.name
   });
-  newWorkout.save();
-  res
-    .status(200)
-    .json(newWorkout);
+  newWorkout.save(
+    (err, savedObject) =>{
+      res
+        .status(200)
+        .json(savedObject)
+    }
+  );
   return;
     //.json({"message" : "Workout was saved", "workout" : newWorkout});
   
