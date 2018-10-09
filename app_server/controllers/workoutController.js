@@ -52,7 +52,7 @@ workoutController.addNewWorkout = (req, res) => {
 }
 
 workoutController.addNewExercise = (req, res) => {
-  if(!req.body.id || !req.body.exercise_name || !req.body.description || 
+  if(!req.body.name || !req.body.description || 
     !req.body.set || !req.body.duration){
       res
         .status(400)
@@ -61,17 +61,17 @@ workoutController.addNewExercise = (req, res) => {
     }
 
   const newExercise = new ExcerciseSchema();
-  newExercise.name = req.body.exercise_name,
+  newExercise.name = req.body.name,
   newExercise.description = req.body.description,
   newExercise.set = req.body.num_per_set,
   newExercise.duration = req.body.duration
   
-  WorkoutProgram.findByIdAndUpdate(req.body.id, {
+  WorkoutProgram.findByIdAndUpdate(req.params.id, {
     $addToSet: { excercises: newExercise },
   }).then(() => {
     res
       .status(200)
-      .json({"message" : "Excercise was saved"});
+      .json({"message" : "Excercise was saved", "exercise" : newExercise});
       return;
   });
   return;
