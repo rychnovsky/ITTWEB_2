@@ -47,7 +47,7 @@ workoutController.addNewWorkout = (req, res) => {
   newWorkout.save();
   res
     .status(200)
-    .json({"message" : "Workout was saved"});
+    .json({"message" : "Workout was saved", "workout" : newWorkout});
   return;
 }
 
