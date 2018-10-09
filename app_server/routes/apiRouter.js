@@ -9,13 +9,17 @@ import userController from '../controllers/userController';
  * Router
  * map every request to controller
  */
-router.route('/workouts').get(workoutController.list);
+router.get('/workouts', workoutController.list);
 
-router.route('/workouts/:id').get(workoutController.detail);
+router.get('/workouts/:id', workoutController.detail);
 
-//TODO make sure this is done right
+router.post('/workouts', workoutController.addNewWorkout);
+
+router.post('/workouts/:id', workoutController.addNewExercise);
+
 router.post('/register', userController.register);
 
 router.post('/login', userController.login);
+
 // export the router
 export default router;
