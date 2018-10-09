@@ -24,7 +24,7 @@ workoutController.detail = (req, res) => {
       .json({"message" : "id cannot be empty"});
       return;
   }
-  const workoutId = req.body.id;
+  const workoutId = req.params.id;
   WorkoutProgram.findById(workoutId).then(workout => {
     res.status(200);
     res.json(workout);
