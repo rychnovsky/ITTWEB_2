@@ -18,7 +18,7 @@ workoutController.list = (req, res) => {
 
 // show detail of one workout program
 workoutController.detail = (req, res) => {
-  if(!req.body.id){
+  if(!req.params.id){
     res
       .status(400)
       .json({"message" : "id cannot be empty"});
