@@ -144,6 +144,7 @@ userController.addWorkoutLog = (req, res) => {
         newLog.date = req.body.date;
         newLog.workout = doc[0];
 
+
         //Find the user logged in, add newLog to logs
         userProgram.findOne({email : req.payload.email}).exec(function (err, user){
             if(!user){
@@ -161,7 +162,7 @@ userController.addWorkoutLog = (req, res) => {
         userProgram.findOneAndUpdate({email :req.payload.email}, {$addToSet : {logs : newLog}}).then(() =>{
             res
                 .status(200)
-                .json({"message" : "Log was saved"});
+                .json(newLog);
             return;
         });
             return;
