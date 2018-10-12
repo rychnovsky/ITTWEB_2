@@ -1,5 +1,8 @@
 import userProgram from '../models/user';
-import db from '../utils/db';
+import mongoose from 'mongoose';
+import workoutLogSchema from '../models/log';
+import WorkoutProgram from '../models/workoutProgram';
+import { callbackify } from 'util';
 require('crypto');
 
 let userController = {};
@@ -96,6 +99,74 @@ userController.login = (req,res) => {
             });
             return false;
         }
+    });
+    return;
+}
+
+userController.getWorkoutLogs = (req, res) => {
+    //For user logged in, get their logs and return them
+    userProgram.findOne({email : req.payload.email}).exec(function (err, user){
+        if(!user){
+            res
+                .status(404)
+                .json({"message" : "User not found"});
+            return;
+        }else if(err){
+            console.log(err);
+            res
+                .status(404)
+                .json({"message" : err});
+            return;
+        }
+        res
+            .status(200)
+            .json(user.logs);
+        return;
+    });
+    return;
+}
+
+let workoutLogProgram = mongoose.model('workoutLogProgram', workoutLogSchema);
+
+userController.addWorkoutLog = (req, res) => {
+    if(!req.body.date || !req.body.id){
+        res
+            .status(400)
+            .json({"message" : "Date and id required"});
+        return;
+    }
+
+    var newLog = new workoutLogProgram();
+    
+    //Find workout by id and add to log
+    WorkoutProgram.find({"_id" : req.body.id}, function (err, doc){
+
+        newLog.date = req.body.date;
+        newLog.workouts = doc[0];
+
+        //Find the user logged in, add newLog to logs
+        userProgram.findOne({email : req.payload.email}).exec(function (err, user){
+            if(!user){
+                res
+                    .status(404)
+                    .json({"message" : "User not found"});
+                return;
+            }else if(err){
+                console.log(err);
+                res
+                    .status(404)
+                    .json({"message" : err});
+                return;
+            }
+        userProgram.findOneAndUpdate({email :req.payload.email}, {$addToSet : {logs : newLog}}).then(() =>{
+            res
+                .status(200)
+                .json({"message" : "Log was saved"});
+            return;
+        });
+            return;
+        });
+        return;
     });
     return;
 }

@@ -1,6 +1,7 @@
 import express from 'express';
 var router = express.Router();
 var jwt = require('express-jwt');
+
 //TODO find why process.env.JWT_SECRET is undefined here but not in user.js
 var auth = jwt({
     secret : 'sg9GXMkYfN46kwkguR7AyphtUGbgABrP',
@@ -10,6 +11,7 @@ var auth = jwt({
 // import controlers
 import workoutController from '../controllers/workoutController';
 import userController from '../controllers/userController';
+import { runInContext } from 'vm';
 
 /**
  * Router
@@ -26,6 +28,10 @@ router.post('/workouts/:id', auth, workoutController.addNewExercise);
 router.post('/register', userController.register);
 
 router.post('/login', userController.login);
+
+router.get('/workoutLogs', auth, userController.getWorkoutLogs);
+
+router.post('/workoutLogs', auth, userController.addWorkoutLog);
 
 // export the router
 export default router;
