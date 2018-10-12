@@ -10,7 +10,7 @@ const WorkoutProgramSchema = new Schema({
 
 const workoutLogSchema = new Schema({
     date : Date,
-    workouts : [WorkoutProgramSchema]
+    workout : WorkoutProgramSchema
 });
 
 export default workoutLogSchema;

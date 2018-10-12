@@ -142,7 +142,7 @@ userController.addWorkoutLog = (req, res) => {
     WorkoutProgram.find({"_id" : req.body.id}, function (err, doc){
 
         newLog.date = req.body.date;
-        newLog.workouts = doc[0];
+        newLog.workout = doc[0];
 
         //Find the user logged in, add newLog to logs
         userProgram.findOne({email : req.payload.email}).exec(function (err, user){
