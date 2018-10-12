@@ -129,7 +129,7 @@ userController.getWorkoutLogs = (req, res) => {
 let workoutLogProgram = mongoose.model('workoutLogProgram', workoutLogSchema);
 
 userController.addWorkoutLog = (req, res) => {
-    if(!req.body.date || !req.body.id){
+    if(!req.body.date || !req.body.workout._id){
         res
             .status(400)
             .json({"message" : "Date and id required"});
@@ -139,7 +139,7 @@ userController.addWorkoutLog = (req, res) => {
     var newLog = new workoutLogProgram();
     
     //Find workout by id and add to log
-    WorkoutProgram.find({"_id" : req.body.id}, function (err, doc){
+    WorkoutProgram.find({"_id" : req.body.workout._id}, function (err, doc){
 
         newLog.date = req.body.date;
         newLog.workout = doc[0];
